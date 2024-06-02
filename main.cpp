@@ -24,7 +24,7 @@ int main()
             
             break;
         case 1:
-            cout << "bulevard" << endl;
+            cout << "" << endl;
 
             break;
         case 2:
