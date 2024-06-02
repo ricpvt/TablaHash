@@ -2,54 +2,36 @@
 
 ### Publicos
 
-- [ ] Constructor
+- [x] Constructor
 
-- [ ] Destructor
+- [x] Destructor
 
-- [ ] Constructor de copias
+- [x] Constructor de copias
 
-- [ ] operator=
+- [x] operator=
 
-- [ ] Agregar clave y valor
+- [x] Agregar clave y valor
 
-- [ ] Buscar valor usando la clave
+- [x] Buscar valor usando la clave
 
-- [ ] Verificar si existe una clave
+- [x] Verificar si existe una clave
 
-- [ ] Eliminar usando la clave
+- [x] Eliminar usando la clave
 
-- [ ] Imprimir la tabla
+- [x] Imprimir la tabla
 
-- [ ] Vaciar la tabla
+- [x] Vaciar la tabla
 
-- [ ] Contar colisiones
+- [x] Contar colisiones
 
-- [ ] Mostrar colisiones
+- [x] Mostrar colisiones
 
-- [ ] Obtener numero de elementos
+- [x] Obtener numero de elementos
 
-- [ ] Verificar si la tabla esta vacia
+- [x] Verificar si la tabla esta vacia
 
 ### Privados
 
-- [ ] Redimensionar la tabla
-
-- [ ] 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- [x] Redimensionar la tabla
 
 
