@@ -3,7 +3,7 @@ template<typename C, typename V>
 TablaHashDirA<C, V>::TablaHashDirA(int tamH, int (*funcHash)(const C&)) : tam(tamH), tabla(new Elemento*[tam]), numElementos(0), funcionHash(funcHash)
 {
     for(int i = 0; i < tam; ++i)
-        Tabla[i] = nullptr;
+        tabla[i] = nullptr;
 }
 //*********************//Destructor//***************************************************************************************************************************************
 template<typename C, typename V>
@@ -14,7 +14,7 @@ TablaHashDirA<C, V>::~TablaHashDirA()
 }
 //**********************//Constructor de Copias//**************************************************************************************************************************************
 template<typename C, typename V>
-TablaHashDirA<C, V>::TablaHashDirA(const TablaHashDirA& otro) : tam(otro.tam), tabla(new Elemento*[tam]), numElemento(otro.Elemento), funcionHash(otro.funcionHash)
+TablaHashDirA<C, V>::TablaHashDirA(const TablaHashDirA& otro) : tam(otro.tam), tabla(new Elemento*[tam]), numElementos(otro.numElementos), funcionHash(otro.funcionHash)
 {
     for(int i = 0; i < tam; ++i){
         if(otro.tabla[i] != nullptr)
@@ -25,7 +25,7 @@ TablaHashDirA<C, V>::TablaHashDirA(const TablaHashDirA& otro) : tam(otro.tam), t
 }
 //**********************//Operador de Asignacion//**************************************************************************************************************************************
 template<typename C, typename V>
-TablaHashDirA<C, V>& TablaHashDirA<C, V>:operator=(const TablaHash& otro)
+TablaHashDirA<C, V>& TablaHashDirA<C, V>::operator=(const TablaHashDirA& otro)
 {
     if(this != &otro)
     {
@@ -57,7 +57,7 @@ void TablaHashDirA<C, V>::Redimensionar(int nuevoTam)
 {
     // Crea un Nueva Instancia Para la Memoria
     Elemento** nuevaTabla = new Elemento*[nuevoTam];
-    for(int i = 0; i < nuevotam; ++i){
+    for(int i = 0; i < nuevoTam; ++i){
         // Asigna nullptr a todos los elementos de la nueva tabla
         nuevaTabla[i] = nullptr;
     }
@@ -68,7 +68,7 @@ void TablaHashDirA<C, V>::Redimensionar(int nuevoTam)
     for(int i = 0; i < anteriorTam; ++i){
         if(tabla[i] != nullptr)
         {
-            int nuevoIndice = indiceHash(tabla[i]->clave); // Se calcula un nuevo indice para el elemento actual
+            int nuevoIndice = IndiceHash(tabla[i]->clave); // Se calcula un nuevo indice para el elemento actual
             int iteraciones = 1;
             while(nuevaTabla[nuevoIndice] != nullptr)
             {
@@ -107,7 +107,7 @@ void TablaHashDirA<C, V>::Agregar(const C& clave, const V& valor) {
         indice = (indice + conteo) % tam;  //sondeo lineal
         conteo++;
     }
-    tabla[indice] = new Elementos(clave, valor);
+    tabla[indice] = new Elemento(clave, valor);
     numElementos++;
 }
 //************************************************************************************************************************************************************
@@ -122,7 +122,7 @@ V TablaHashDirA<C, V>::Buscar(const C& clave) const{
         conteo++;
     }
     indice = (indice + conteo) % tam;// Aplica sondeo lineal si hay colisión
-    
+
     cout << "No se encontro el valor con la clave " << clave << "." << endl;
     return 0; //Valor predeterminado si no se encuentra la clave
 }
@@ -132,7 +132,7 @@ template<typename C, typename V>
 bool TablaHashDirA<C, V>::BuscarClave(const C& clave) const{
     int indice = IndiceHash(clave);
     int conteo = 1;
-    
+
     while (!IndiceVacio(indice)) {
         if (tabla[indice]->clave == clave) return true;
 
@@ -158,7 +158,7 @@ void TablaHashDirA<C, V>::Eliminar(const C& clave) {
             // Reorganizar los elementos restantes en la tabla
             int siguienteIndice = (indice + intentos) % tam;
             while (!IndiceVacio(siguienteIndice)) {
-                Elementos* elementoActual = tabla[siguienteIndice];
+                Elemento* elementoActual = tabla[siguienteIndice];
                 tabla[siguienteIndice] = nullptr;
                 numElementos--;
 
@@ -180,23 +180,23 @@ template<typename C, typename V>
 void TablaHashDirA<C, V>::Imprimir() const
 {
     cout << "Tabla Hash:" << endl;
-    cout << "+-------------+-----------+--------+" << endl;
-    cout << "| Posici\242n |   Clave   |   Valor    |" << endl;
-    cout << "+-------------+-----------+--------+" << endl;
+    cout << "+-----------+-----------+------------+" << endl;
+    cout << "| Posici\242n  |   Clave   |   Valor    |" << endl;
+    cout << "+-----------+-----------+------------+" << endl;
 
     for (int i = 0; i < tam; ++i)
     {
         if (tabla[i] != nullptr)
         {
-            cout << "| " << setw(9) << i << " | " << setw(9) <<tabla[i]->clave << " | " << setw(9) << tabla[i]->valor << " |" << endl;
+            cout << "| " << setw(9) << i << " | " << setw(9) <<tabla[i]->clave << " | " << setw(10) << tabla[i]->valor << " |" << endl;
         }
         else
         {
-            cout << "|" << setw(9) << i << "  |    Vac\241a  |   Vac\241o   |" << endl;
+            cout << "|" << setw(9) << i << "  |    Vac\241a  |   Vac\241o    |" << endl;
         }
     }
 
-    cout << "+-------------+-----------+--------+" << endl;
+    cout << "+-----------+-----------+------------+" << endl;
 }
 //************************************************************************************************************************************************************
 template<typename C, typename V>

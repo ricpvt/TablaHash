@@ -1,84 +1,188 @@
 #ifndef TABLA_HASH_DIRA_H_INCLUDED
 #define TABLA_HASH_DIRA_H_INCLUDED
 
-template<typename C, template V>
-class TablaHashDirA{
-public:
-    /* Constructor por default */
-    TablaHashDirA();
+#include <iostream>
+#include <ios>
+#include <iomanip>
+#include <string>
+#include <limits>
+#include <stdexcept>
+#include <cmath>
 
-    /* Destructor por default */
+using std::cout;
+using std::endl;
+using std::cin;
+using std::numeric_limits;
+using std::max;
+using std::string;
+using std::setw;
+using std::ws;
+
+/**
+ * @brief Clase TablaHashDirA que implementa una tabla hash con direccionamiento abierto.
+ *
+ * @tparam C Tipo de las claves.
+ * @tparam V Tipo de los valores.
+ */
+template<typename C, typename V>
+class TablaHashDirA {
+public:
+    /**
+     * @brief Constructor que inicializa la tabla hash.
+     *
+     * @param tamH Tamaño inicial de la tabla.
+     * @param funcHash Puntero a la función de hash que será utilizada.
+     */
+    TablaHashDirA(int tamH, int (*funcHash)(const C&));
+
+    /**
+     * @brief Destructor que libera los recursos de la tabla hash.
+     */
     ~TablaHashDirA();
 
-    /* Constructor de copias */
+    /**
+     * @brief Constructor de copia.
+     *
+     * @param otro Objeto de tipo TablaHashDirA a copiar.
+     */
     TablaHashDirA(const TablaHashDirA& otro);
 
-    /* Operador de asignacion */
+    /**
+     * @brief Operador de asignación.
+     *
+     * @param otro Objeto de tipo TablaHashDirA a asignar.
+     * @return Referencia a esta tabla hash.
+     */
     TablaHashDirA& operator=(const TablaHashDirA& otro);
 
-    /* Agregar Clave y Valor (valor asociado a la clave) */
-    void Agregar(const &C clave, const &V valor);
+    /**
+     * @brief Agrega un nuevo elemento a la tabla hash.
+     *
+     * @param clave Clave del elemento a agregar.
+     * @param valor Valor del elemento a agregar.
+     */
+    void Agregar(const C& clave, const V& valor);
 
-    /* Buscar Valor por Clave */
-    V BuscarValor(const &C clave) const;
+    /**
+     * @brief Busca un valor en la tabla hash por su clave.
+     *
+     * @param clave Clave del elemento a buscar.
+     * @return Valor del elemento encontrado.
+     * @throws std::runtime_error Si la clave no se encuentra.
+     */
+    V Buscar(const C& clave) const;
 
-    /* Capturar Clave */
-    C CapturarClave();
+    /**
+     * @brief Captura una clave del usuario.
+     *
+     * @return Clave capturada.
+     */
+    C CapturaClave();
 
-    /* Capturar Valor */
-    V CapturarValor();
+    /**
+     * @brief Captura un valor del usuario.
+     *
+     * @return Valor capturado.
+     */
+    V CapturaValor();
 
-    /* Buscar si Existe la Clave */
-    bool BuscarClave(const &C clave) const;
+    /**
+     * @brief Verifica si una clave existe en la tabla hash.
+     *
+     * @param clave Clave a buscar.
+     * @return true Si la clave existe, false en caso contrario.
+     */
+    bool BuscarClave(const C& clave) const;
 
-    /* Eliminar Clave y Valor */
-    void Eliminar(const &C clave);
+    /**
+     * @brief Elimina un elemento de la tabla hash por su clave.
+     *
+     * @param clave Clave del elemento a eliminar.
+     */
+    void Eliminar(const C& clave);
 
-    /* Imprimir los elementos de la tabla */
-    void Imprimir();
+    /**
+     * @brief Imprime todos los elementos de la tabla hash.
+     */
+    void Imprimir() const;
 
-    /* Vaciar todo el contenido de la tabla */
+    /**
+     * @brief Vacía la tabla hash, eliminando todos sus elementos.
+     */
     void Vaciar();
 
-    /* Contar cuantas Colisiones Ocurrieron */
+    /**
+     * @brief Cuenta el número de colisiones en la tabla hash.
+     *
+     * @return Número de colisiones.
+     */
     int ContarColisiones() const;
 
-    /* Mostrar Colisiones en la Tabla Hash */
-    void MostrarColisiones(const TablaHashDirA<C, V>& otro);
+    /**
+     * @brief Muestra las colisiones de la tabla hash.
+     *
+     * @param tabla Referencia a otra tabla hash para comparar colisiones.
+     */
+    void MostrarColisiones(const TablaHashDirA<C, V>& tabla);
 
-    /* Obtener el Numero de Elementos */
+    /**
+     * @brief Obtiene el número de elementos en la tabla hash.
+     *
+     * @return Número de elementos.
+     */
     int ObtenerNumElementos() const;
 
-    /* Verifica si la Tabla Esta Vacia  */
-    bool EstaVacia();
-
+    /**
+     * @brief Verifica si la tabla hash está vacía.
+     *
+     * @return true Si la tabla está vacía, false en caso contrario.
+     */
+    bool EstaVacio();
 
 private:
-
-    struct Elemento{
-        /* Constructor de la Estructura Elemento */
-        Elemento(const C& c, const V& v) : clave(c), valor(v) {}
-
-        C clave; /* Clave de la Tabla */
-        V valor; /* Valor de la Tabla */
+    /**
+     * @brief Estructura para representar un elemento en la tabla hash.
+     */
+    struct Elemento {
+        Elemento(const C& c, const V& val) : clave(c), valor(val) {}
+        C clave;
+        V valor;
     };
-    int tam; // Tamaño del Arreglo */
-    Elemento** tabla; /* Puntero a un Arreglo de Punteros */
-    int NumElementos; /* Numero de Elementos en la Tabla Hash */
 
-    /* Puntero a Funcion Hash que se Utilizara Para Calcular el Indice de una Clave en la Tabla Hash */
-    int (*funcionHash)(const C&);
+    int tam; /**< Tamaño de la tabla hash. */
+    Elemento** tabla; /**< Puntero a un arreglo de punteros a elementos. */
+    int numElementos; /**< Número de elementos en la tabla hash. */
+    int (*funcionHash)(const C&); /**< Puntero a la función de hash utilizada. */
 
-    /* Calcula el Indice Hash para una Clave */
+    /**
+     * @brief Calcula el índice hash de una clave.
+     *
+     * @param clave Clave para la cual calcular el índice.
+     * @return Índice hash.
+     */
     int IndiceHash(const C& clave) const;
 
-    /* Redimensionar la Tabla Hash a un Nuevo Tamaño */
+    /**
+     * @brief Redimensiona la tabla hash a un nuevo tamaño.
+     *
+     * @param nuevoTam Nuevo tamaño de la tabla.
+     */
     void Redimensionar(int nuevoTam);
 
-    /* Verifica si el Indice del Arreglo Esta Vacio */
-    bool IndiceVacio(int indice);
+    /**
+     * @brief Verifica si un índice de la tabla está vacío.
+     *
+     * @param indice Índice a verificar.
+     * @return true Si el índice está vacío, false en caso contrario.
+     */
+    bool IndiceVacio(int indice) const;
 
-    /* Obtener el n-esimo numero primo para redimensionar */
+    /**
+     * @brief Obtiene el número primo mayor que un número dado.
+     *
+     * @param n Número base.
+     * @return Número primo mayor que n.
+     */
     int ObtenerPrimoMayor(int n);
 };
 

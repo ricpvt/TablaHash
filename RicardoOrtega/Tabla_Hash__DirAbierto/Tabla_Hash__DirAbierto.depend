@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1717411473 source:c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\main.cpp
+	"Tabla_Hash_DirA.h"
+	"Gestiones.h"
+	"Utilerias.h"
+
+1717412420 c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\tabla_hash_dira.h
+	<iostream>
+	<ios>
+	<iomanip>
+	<string>
+	<limits>
+	<stdexcept>
+	<cmath>
+	"Tabla_Hash_DirA.tpp"
+
+1717412241 c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\tabla_hash_dira.tpp
+
+1717391664 c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\gestiones.h
+
+1717411868 c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\utilerias.h
+
+1717391671 source:c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\gestiones.cpp
+	"Tabla_Hash_DirA.h"
+	"Gestiones.h"
+
+1717412292 source:c:\users\ricardo\desktop\programacion\tablahash\ricardoortega\tabla_hash__dirabierto\utilerias.cpp
+	"Tabla_Hash_DirA.h"
+	"Utilerias.h"
+	"Gestiones.h"
+
