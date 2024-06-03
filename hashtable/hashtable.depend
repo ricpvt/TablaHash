@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1717434068 source:d:\2024\estructuradedatos\hashtable\gestiones.cpp
+	"Tabla_Hash_DirA.h"
+	"Gestiones.h"
+
+1717434069 d:\2024\estructuradedatos\hashtable\tabla_hash_dira.h
+	<iostream>
+	<ios>
+	<iomanip>
+	<string>
+	<limits>
+	<stdexcept>
+	<cmath>
+	"Tabla_Hash_DirA.tpp"
+
+1717437526 d:\2024\estructuradedatos\hashtable\tabla_hash_dira.tpp
+	<type_traits>
+
+1717434068 d:\2024\estructuradedatos\hashtable\gestiones.h
+
+1717434068 source:d:\2024\estructuradedatos\hashtable\main.cpp
+	"Tabla_Hash_DirA.h"
+	"Gestiones.h"
+	"Menu.h"
+
+1717439700 d:\2024\estructuradedatos\hashtable\menu.h
+
+1717437467 source:d:\2024\estructuradedatos\hashtable\menu.cpp
+	"Tabla_Hash_DirA.h"
+	"Menu.h"
+	"Gestiones.h"
+	<iostream>
+	<limits>
+
