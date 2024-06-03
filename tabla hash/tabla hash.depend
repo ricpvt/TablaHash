@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\usuario\documents\c\rawc\tabla hash\main.cpp
+	<iostream>
+
+1717386203 source:c:\users\usuario\documents\c\rawc\tabla hash\tablahash.cpp
+	"TablaHash.h"
+
+1717386186 c:\users\usuario\documents\c\rawc\tabla hash\tablahash.h
+	<iostream>
+	<string>
+
