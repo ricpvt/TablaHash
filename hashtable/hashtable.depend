@@ -13,7 +13,7 @@
 	<cmath>
 	"Tabla_Hash_DirA.tpp"
 
-1717437526 d:\2024\estructuradedatos\hashtable\tabla_hash_dira.tpp
+1717446127 d:\2024\estructuradedatos\hashtable\tabla_hash_dira.tpp
 	<type_traits>
 
 1717434068 d:\2024\estructuradedatos\hashtable\gestiones.h
@@ -23,9 +23,9 @@
 	"Gestiones.h"
 	"Menu.h"
 
-1717439700 d:\2024\estructuradedatos\hashtable\menu.h
+1717442918 d:\2024\estructuradedatos\hashtable\menu.h
 
-1717437467 source:d:\2024\estructuradedatos\hashtable\menu.cpp
+1717442918 source:d:\2024\estructuradedatos\hashtable\menu.cpp
 	"Tabla_Hash_DirA.h"
 	"Menu.h"
 	"Gestiones.h"

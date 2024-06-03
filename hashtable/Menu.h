@@ -4,6 +4,8 @@
 
 
 
+/** \brief Enumeracion para el tipo de tabla
+ */
 enum TIPOTABLAHASH{
     CAD_ENT=1,
     ENT_ENT,
@@ -12,6 +14,8 @@ enum TIPOTABLAHASH{
     SALIRTIPO
     };
 
+/** \brief Enumeracion para el metodo seleccionado
+ */
 enum OPERACIONES{
     AGREGAR = 1,
     ELIMINAR,

@@ -54,34 +54,33 @@ int TablaHashDirA<C, V>::IndiceHash(const C& clave) const
 }
 //***********************//Redimensionar//*************************************************************************************************************************************
 template<typename C, typename V>
-void TablaHashDirA<C, V>::Redimensionar(int nuevoTam)
-{
-    // Crea un Nueva Instancia Para la Memoria
+void TablaHashDirA<C, V>::Redimensionar(int nuevoTam) {
     Elemento** nuevaTabla = new Elemento*[nuevoTam];
-    for(int i = 0; i < nuevoTam; ++i){
-        // Asigna nullptr a todos los elementos de la nueva tabla
+    for (int i = 0; i < nuevoTam; ++i) {
         nuevaTabla[i] = nullptr;
     }
 
-    int anteriorTam = tam; // Guarda el anterior tamaño antes de cambiarlo
-    tam = nuevoTam; // Actualiza el tamaño de la tabla
+    int tamViejo = tam;
+    tam = nuevoTam;
+    numElementos = 0;
 
-    for(int i = 0; i < anteriorTam; ++i){
-        if(tabla[i] != nullptr)
-        {
-            int nuevoIndice = IndiceHash(tabla[i]->clave); // Se calcula un nuevo indice para el elemento actual
-            int iteraciones = 1;
-            while(nuevaTabla[nuevoIndice] != nullptr)
-            {
-                nuevoIndice = (nuevoIndice + iteraciones) % nuevoTam; // Sondeo Lineal
-                iteraciones++;
+    for (int i = 0; i < tamViejo; ++i) {
+        if (tabla[i] != nullptr) {
+            int indice = IndiceHash(tabla[i]->clave);
+
+            // Probe linearly until an empty slot is found
+            while (nuevaTabla[indice] != nullptr) {
+                indice = (indice + 1) % nuevoTam;
             }
-            nuevaTabla[nuevoIndice] = tabla[i]; // Elemento actual a la nueva tabla al nuevo indice
+
+            nuevaTabla[indice] = tabla[i];
+            numElementos++;
         }
     }
     delete[] tabla;
     tabla = nuevaTabla;
 }
+
 //************************************************************************************************************************************************************
 //Regresa true si el indice tiene un valor asignado en la tabla
 template<typename C, typename V>
@@ -92,24 +91,19 @@ bool TablaHashDirA<C, V>::IndiceVacio(int indice) const{
 //Crea una entrada en la table con el valor aplicando la funcion hash a la clave
 template<typename C, typename V>
 void TablaHashDirA<C, V>::Agregar(const C& clave, const V& valor) {
-    if(ObtenerNumElementos() >= (round(tam) * 0.80)) {
-        int nuevoTam = ObtenerPrimoMayor(tam * 2);
-        Redimensionar(nuevoTam);
-    }
-    int indice = IndiceHash(clave);  //Indice utilizando la funcion hash
-    int conteo = 1;
-
-    //Verifica si el indice esta vacio
-    while(!IndiceVacio(indice)) {
+    int indice = IndiceHash(clave);
+    while (tabla[indice] != nullptr) {
         if (tabla[indice]->clave == clave) {
             tabla[indice]->valor = valor;
             return;
         }
-        indice = (indice + conteo) % tam;  //sondeo lineal
-        conteo++;
+        indice = (indice + 1) % tam;
     }
     tabla[indice] = new Elemento(clave, valor);
     numElementos++;
+    if (numElementos > tam / 2) {
+        Redimensionar(tam * 2);
+    }
 }
 //************************************************************************************************************************************************************
 //Regresa un valor de la tabla dada su clave

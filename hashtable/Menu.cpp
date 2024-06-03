@@ -207,7 +207,6 @@ void MenuTipo()
     {
         case CAD_ENT:
         {
-            cout << "Tabla Hash de tipo Cadena-Entero:" << endl;
             TablaHashDirA<string, int> tabla(5, IndiceCad);
             MenuOperaciones(tabla,tipo);
 
@@ -215,7 +214,6 @@ void MenuTipo()
         }
         case ENT_ENT:
         {
-            cout << "Tabla Hash de tipo Entero-Entero:" << endl;
             TablaHashDirA<int, int> tabla(5, IndiceEnt);
             MenuOperaciones(tabla,tipo);
 
@@ -223,7 +221,7 @@ void MenuTipo()
         }
         case CAD_CAD:
         {
-            cout << "Tabla Hash de tipo Cadena_Cadena:" << endl;
+
             TablaHashDirA<string, string> tabla(5, IndiceCad);
             MenuOperaciones(tabla,tipo);
 
@@ -231,7 +229,6 @@ void MenuTipo()
         }
         case ENT_CAD:
         {
-            cout << "Tabla Hash de tipo Entero-Cadena:" << endl;
             TablaHashDirA<int, string> tabla(5, IndiceEnt);
             MenuOperaciones(tabla,tipo);
 
