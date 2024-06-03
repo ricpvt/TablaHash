@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Gestiones.cpp" />
+		<Unit filename="Gestiones.h" />
 		<Unit filename="Tabla_Hash_DirA.h" />
 		<Unit filename="Tabla_Hash_DirA.tpp" />
 		<Unit filename="main.cpp" />
